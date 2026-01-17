@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI模型竞技场演进史 V3 - 超平滑动画</title>
+    <link rel="stylesheet" href="css/reset.css?v=18">
+    <link rel="stylesheet" href="css/variables.css?v=18">
+    <link rel="stylesheet" href="css/layout.css?v=18">
+    <link rel="stylesheet" href="css/chart.css?v=18">
+    <link rel="stylesheet" href="css/animations.css?v=18">
+    <style>
+        /* V3 特有的像素级动画样式 */
+        .pixel-enter {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        .pixel-enter-active {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s ease;
+        }
+
+        .pixel-leave {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .pixel-leave-active {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .pixel-moving {
+            will-change: transform;
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        /* ⚠️ V3新增：宽度变化高亮特效 - 超强视觉冲击 */
+        .bar-highlight {
+            /* 多重发光效果 */
+            box-shadow:
+                0 0 30px currentColor !important,
+                0 0 60px rgba(255, 255, 255, 0.8) !important,
+                0 0 90px rgba(0, 240, 255, 0.6) !important,
+                inset 0 0 20px rgba(255, 255, 255, 0.5) !important;
+
+            /* 极亮闪光效果 */
+            filter: brightness(3.0) saturate(1.5) !important;
+
+            /* 放大效果 */
+            transform: scaleY(1.15) scaleX(1.02) !important;
+
+            /* 动画 */
+            animation: barPulseExtreme 1s ease-out !important;
+
+            /* 边框高亮 */
+            border: 3px solid rgba(255, 255, 255, 0.9) !important;
+
+            /* z-index提升 */
+            position: relative;
+            z-index: 100 !important;
+        }
+
+        /* ✅ 确保柱状图可以100%宽度显示 */
+        .bar {
+            max-width: none !important;
+        }
+
+        @keyframes barPulseExtreme {
+            0% {
+                box-shadow:
+                    0 0 20px currentColor !important,
+                    0 0 40px rgba(255, 255, 255, 0.5) !important,
+                    inset 0 0 10px rgba(255, 255, 255, 0.3) !important;
+                filter: brightness(1.5) saturate(1.2) !important;
+                transform: scaleY(1.05) scaleX(1.01) !important;
+            }
+            30% {
+                box-shadow:
+                    0 0 50px currentColor !important,
+                    0 0 100px rgba(255, 255, 255, 1) !important,
+                    0 0 150px rgba(0, 240, 255, 0.8) !important,
+                    inset 0 0 30px rgba(255, 255, 255, 0.8) !important;
+                filter: brightness(3.5) saturate(2.0) !important;
+                transform: scaleY(1.2) scaleX(1.05) !important;
+            }
+            100% {
+                box-shadow:
+                    0 0 15px currentColor !important,
+                    inset 0 0 5px rgba(255, 255, 255, 0.2) !important;
+                filter: brightness(1) saturate(1) !important;
+                transform: scaleY(1) scaleX(1) !important;
+            }
+        }
+
+        /* 调试模式：如果特效还是看不到，添加明显的白色闪烁 */
+        .bar-highlight::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            animation: flashBang 1s ease-out !important;
+            z-index: 200 !important;
+        }
+
+        @keyframes flashBang {
+            0% {
+                opacity: 0.9;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* 覆盖chart.css中的overflow: hidden，让伪元素可见 */
+        .bar-container:has(.bar-highlight) {
+            overflow: visible !important;
+        }
+
+        .bar-highlight {
+            overflow: visible !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header-content">
+                <h1>AI模型竞技场演进史 <span style="color: var(--accent-cyan);">V3</span></h1>
+                <!-- 数据来源说明 -->
+                <div class="data-notice" style="
+                    background: rgba(0, 240, 255, 0.1);
+                    border-left: 3px solid var(--accent-cyan);
+                    padding: 8px 15px;
+                    margin-top: 10px;
+                    font-size: 12px;
+                    border-radius: 4px;
+                ">
+                    <strong>📊 数据来源</strong>：
+                    <span style="color: #10b981;">✅</span> 1月、2月、12月真实榜单 |
+                    <span style="color: #f59e0b;">📈</span> 其他月份基于真实模型生成 |
+                    Grok-3 (1402) DeepSeek-R1 (1357)
+                </div>
+            </div>
+            <div class="controls">
+                <button id="playPause" class="btn btn-primary">
+                    <i class="icon-play"></i> 播放
+                </button>
+                <div class="speed-control">
+                    <label for="speed">速度:</label>
+                    <input type="range" id="speed" min="0.5" max="3" step="0.5" value="1">
+                    <span id="speedDisplay">1x</span>
+                </div>
+                <div class="month-display">
+                    <span id="currentMonth">2024年1月</span>
+                </div>
+            </div>
+        </header>
+
+        <main id="chart">
+            <div class="loading">加载数据中...</div>
+        </main>
+
+        <footer>
+            <div class="timeline">
+                <div class="timeline-track">
+                    <!-- 时间轴标记将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <div class="legend">
+                <h3>公司图例</h3>
+                <div class="legend-items">
+                    <!-- 图例将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 使用2025年数据（12个月，包含1-2月真实数据） -->
+    <script src="js/data-bundle-mixed-v2.js?v=18"></script>
+    <script src="js/model-tracker.js?v=18"></script>
+    <script src="js/pixel-animator-v3.js?v=18"></script>
+    <script src="js/chart-v3.js?v=18"></script>
+    <script src="js/animator-v3.js?v=18"></script>
+    <script src="js/main-v3.js?v=18"></script>
+</body>
+</html>

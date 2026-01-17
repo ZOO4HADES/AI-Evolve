@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>柱状图宽度验证</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #0a0e27;
+            color: #e0e6ed;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        th {
+            background: rgba(0, 240, 255, 0.1);
+            color: #00f0ff;
+        }
+        .bar-demo {
+            height: 30px;
+            background: linear-gradient(90deg, #00f0ff, #10b981);
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 柱状图宽度计算验证</h1>
+
+    <h2>修复前 vs 修复后对比</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ELO</th>
+                <th>修复前宽度</th>
+                <th>修复前演示</th>
+                <th>修复后宽度</th>
+                <th>修复后演示</th>
+                <th>改进</th>
+            </tr>
+        </thead>
+        <tbody id="comparison"></tbody>
+    </table>
+
+    <h2>实际数据示例</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>模型</th>
+                <th>ELO</th>
+                <th>宽度</th>
+                <th>演示</th>
+            </tr>
+        </thead>
+        <tbody id="actualData"></tbody>
+    </table>
+
+    <script>
+        // 修复前的计算
+        function calculateBarWidth_OLD(elo) {
+            const minElo = 1000;
+            const maxElo = 1600;
+            const minWidth = 40;
+            const maxWidth = 95;
+            const percentage = (elo - minElo) / (maxElo - minElo);
+            return minWidth + percentage * (maxWidth - minWidth);
+        }
+
+        // 修复后的计算
+        function calculateBarWidth_NEW(elo) {
+            const minElo = 1000;
+            const maxElo = 1600;
+            const minWidth = 30;
+            const maxWidth = 100;
+            const percentage = (elo - minElo) / (maxElo - minElo);
+            return minWidth + percentage * (maxWidth - minWidth);
+        }
+
+        // 生成对比表格
+        const elos = [1100, 1200, 1300, 1400, 1500, 1567];
+        const comparisonBody = document.getElementById('comparison');
+
+        elos.forEach(elo => {
+            const oldWidth = calculateBarWidth_OLD(elo).toFixed(1);
+            const newWidth = calculateBarWidth_NEW(elo).toFixed(1);
+            const improvement = (parseFloat(newWidth) - parseFloat(oldWidth)).toFixed(1);
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${elo}</td>
+                <td>${oldWidth}%</td>
+                <td><div class="bar-demo" style="width: ${oldWidth}%"></div></td>
+                <td>${newWidth}%</td>
+                <td><div class="bar-demo" style="width: ${newWidth}%"></div></td>
+                <td style="color: ${improvement > 0 ? '#10b981' : '#ef4444'}">${improvement > 0 ? '+' : ''}${improvement}%</td>
+            `;
+            comparisonBody.appendChild(row);
+        });
+
+        // 实际数据
+        const actualModels = [
+            { name: 'Gemini-2.5-Pro', elo: 1567 },
+            { name: 'Grok-3-preview', elo: 1545 },
+            { name: 'chocolate (Grok-3)', elo: 1538 },
+            { name: 'ChatGPT-4o-latest', elo: 1428 },
+            { name: 'Claude-3.5-Sonnet', elo: 1405 },
+            { name: 'GPT-4o', elo: 1390 },
+            { name: 'Gemini-2.0-Pro-Exp', elo: 1375 },
+            { name: 'Grok-3-preview-02-24', elo: 1345 }
+        ];
+
+        const actualBody = document.getElementById('actualData');
+        actualModels.forEach(model => {
+            const width = calculateBarWidth_NEW(model.elo).toFixed(1);
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${model.name}</td>
+                <td>${model.elo}</td>
+                <td>${width}%</td>
+                <td><div class="bar-demo" style="width: ${width}%"></div></td>
+            `;
+            actualBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>

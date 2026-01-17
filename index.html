@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI模型竞技场演进史 - Chatbot Arena 2024-2025</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/chart.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header-content">
+                <h1>AI模型竞技场演进史</h1>
+                <p class="subtitle">Chatbot Arena 榜单 (2024-2025)</p>
+            </div>
+            <div class="controls">
+                <button id="playPause" class="btn btn-primary">
+                    <i class="icon-play"></i> 播放
+                </button>
+                <div class="speed-control">
+                    <label for="speed">速度:</label>
+                    <input type="range" id="speed" min="0.5" max="3" step="0.5" value="1">
+                    <span id="speedDisplay">1x</span>
+                </div>
+                <div class="month-display">
+                    <span id="currentMonth">2024年1月</span>
+                </div>
+            </div>
+            <div class="data-notice">
+                ⚠️ 数据为模拟生成，仅供演示参考
+            </div>
+        </header>
+
+        <main id="chart">
+            <!-- 模型行将通过JavaScript动态生成 -->
+            <div class="loading">加载数据中...</div>
+        </main>
+
+        <footer>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                <div class="progress-label">
+                    <span id="progressText">1 / 24</span>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-track">
+                    <!-- 时间轴标记将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <div class="legend">
+                <h3>公司图例</h3>
+                <div class="legend-items">
+                    <!-- 图例将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/data-bundle.js?v=3"></script>
+    <script src="js/model-tracker.js?v=3"></script>
+    <script src="js/animation-controller.js?v=3"></script>
+    <script src="js/chart.js?v=3"></script>
+    <script src="js/animator.js?v=3"></script>
+    <script src="js/main.js?v=3"></script>
+</body>
+</html>

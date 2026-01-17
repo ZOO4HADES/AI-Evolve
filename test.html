@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>数据加载测试</title>
+</head>
+<body>
+    <h1>数据加载测试</h1>
+    <div id="result">正在加载数据...</div>
+
+    <script src="js/data-bundle.js"></script>
+    <script>
+        const resultDiv = document.getElementById('result');
+
+        if (typeof ARENA_DATA !== 'undefined') {
+            resultDiv.innerHTML = `
+                <p style="color: green;">✓ 数据加载成功！</p>
+                <p>总月份数: ${ARENA_DATA.months.length}</p>
+                <p>时间范围: ${ARENA_DATA.months[0].date} 至 ${ARENA_DATA.months[ARENA_DATA.months.length - 1].date}</p>
+                <p>首月模型数量: ${ARENA_DATA.months[0].models.length}</p>
+                <pre>首月前3个模型:
+${JSON.stringify(ARENA_DATA.months[0].models.slice(0, 3), null, 2)}
+                </pre>
+            `;
+        } else {
+            resultDiv.innerHTML = '<p style="color: red;">✗ 数据加载失败！ARENA_DATA 未定义</p>';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+/* Chart Styles */
+#chart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+/* Model Row */
+.model-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(26, 31, 58, 0.5);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-base);
+}
+
+.model-row:hover {
+    background: rgba(26, 31, 58, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+}
+
+/* Rank */
+.rank {
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    min-width: 40px;
+    text-align: center;
+    color: var(--accent-cyan);
+    text-shadow: 0 0 10px var(--glow-cyan);
+}
+
+/* 前三名特殊颜色已移除 - 统一使用青色 */
+
+/* Bar Container - 只包含bar，作为flex容器可以自适应 */
+.bar-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-width: 200px;
+}
+
+/* Bar */
+.bar {
+    height: 32px;
+    border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0); /* GPU加速 */
+    /* ⚠️ 移除transition，由JavaScript逐帧控制宽度以实现像素级动画 */
+    /* transition: width var(--transition-slower); */
+    will-change: width;
+    box-shadow: 0 0 15px currentColor;
+}
+
+/* Bar shimmer effect */
+.bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+/* Model Name */
+.model-name {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 200px;
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Company */
+.company {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    min-width: 80px;
+    text-align: right;
+}
+
+/* Elo Score */
+.elo {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    min-width: 60px;
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    color: var(--accent-cyan);
+}
+
+/* Top 3 Highlight - 已移除特殊边框和发光效果 */
+/* 所有模型行现在使用统一的样式 */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .model-row {
+        padding: var(--space-sm);
+        gap: var(--space-sm);
+    }
+
+    .rank {
+        font-size: var(--font-size-base);
+        min-width: 30px;
+    }
+
+    .bar {
+        height: 24px;
+    }
+
+    .model-name {
+        font-size: var(--font-size-sm);
+        min-width: 100px;
+    }
+
+    .company {
+        font-size: var(--font-size-xs);
+        min-width: 60px;
+    }
+
+    .elo {
+        font-size: var(--font-size-base);
+        min-width: 50px;
+    }
+}

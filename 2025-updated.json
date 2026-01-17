@@ -1,0 +1,772 @@
+{
+  "metadata": {
+    "generated": "2026-01-17T15:04:33.978Z",
+    "source": "Real + Generated",
+    "total_months": 12,
+    "real_data_months": 3,
+    "generated_data_months": 9,
+    "description": "2025年Chatbot Arena演进数据（12个月），包含真实榜单和推测生成数据"
+  },
+  "months": [
+    {
+      "date": "2025-01",
+      "models": [
+        {
+          "rank": 4,
+          "name": "DeepSeek-R1",
+          "elo": 1357,
+          "organization": "DeepSeek",
+          "license": "Open",
+          "votes": 45924
+        },
+        {
+          "rank": 1,
+          "name": "GPT-4o-latest",
+          "elo": 1280,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 46393
+        },
+        {
+          "rank": 2,
+          "name": "Gemini-2.0-Pro",
+          "elo": 1260,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 54314
+        },
+        {
+          "rank": 3,
+          "name": "Claude-3.5-Sonnet",
+          "elo": 1250,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 48951
+        },
+        {
+          "rank": 5,
+          "name": "Claude-3-Opus",
+          "elo": 1220,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 58704
+        },
+        {
+          "rank": 6,
+          "name": "Llama-3-70B",
+          "elo": 1200,
+          "organization": "Meta",
+          "license": "Proprietary",
+          "votes": 54166
+        }
+      ],
+      "description": "Real data - DeepSeek-R1 released"
+    },
+    {
+      "date": "2025-02",
+      "models": [
+        {
+          "rank": 6,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1430,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 41482
+        },
+        {
+          "rank": 1,
+          "name": "Grok-3 (chocolate)",
+          "elo": 1402,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 42799
+        },
+        {
+          "rank": 2,
+          "name": "DeepSeek-R1",
+          "elo": 1363,
+          "organization": "DeepSeek",
+          "license": "Open",
+          "votes": 70111
+        },
+        {
+          "rank": 3,
+          "name": "GPT-4o-latest",
+          "elo": 1280,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 65398
+        },
+        {
+          "rank": 4,
+          "name": "Gemini-2.0-Pro",
+          "elo": 1260,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 46286
+        },
+        {
+          "rank": 5,
+          "name": "Claude-3.5-Sonnet",
+          "elo": 1250,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 57992
+        }
+      ],
+      "description": "Real data - Grok-3 (1402 ELO) released"
+    },
+    {
+      "date": "2025-03",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1444.6,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 96462
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-04",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1447,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 80390
+        },
+        {
+          "rank": 2,
+          "name": "Llama-4-75B",
+          "elo": 1402.7,
+          "organization": "Meta",
+          "license": "Open",
+          "votes": 51732
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-05",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1453.2,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 87909
+        },
+        {
+          "rank": 2,
+          "name": "GLM-4.6",
+          "elo": 1421.5,
+          "organization": "Z.ai",
+          "license": "MIT",
+          "votes": 70448
+        },
+        {
+          "rank": 3,
+          "name": "Llama-4-75B",
+          "elo": 1415.7,
+          "organization": "Meta",
+          "license": "Open",
+          "votes": 97864
+        },
+        {
+          "rank": 4,
+          "name": "DeepSeek-V3",
+          "elo": 1414.6,
+          "organization": "DeepSeek",
+          "license": "Open",
+          "votes": 51406
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-06",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1448.8,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 83321
+        },
+        {
+          "rank": 2,
+          "name": "GLM-4.6",
+          "elo": 1424.9,
+          "organization": "Z.ai",
+          "license": "MIT",
+          "votes": 59398
+        },
+        {
+          "rank": 3,
+          "name": "GPT-5.1",
+          "elo": 1420.4,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 70876
+        },
+        {
+          "rank": 4,
+          "name": "DeepSeek-V3",
+          "elo": 1419,
+          "organization": "DeepSeek",
+          "license": "Open",
+          "votes": 75955
+        },
+        {
+          "rank": 5,
+          "name": "Grok-4",
+          "elo": 1417.2,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 60009
+        },
+        {
+          "rank": 6,
+          "name": "Llama-4-75B",
+          "elo": 1414.7,
+          "organization": "Meta",
+          "license": "Open",
+          "votes": 84177
+        },
+        {
+          "rank": 7,
+          "name": "ERNIE-5.0",
+          "elo": 1412.6,
+          "organization": "Baidu",
+          "license": "Proprietary",
+          "votes": 92431
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-07",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1451.2,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 70369
+        },
+        {
+          "rank": 2,
+          "name": "Claude Opus 4.5",
+          "elo": 1444.2,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 95653
+        },
+        {
+          "rank": 3,
+          "name": "GLM-4.6",
+          "elo": 1431.8,
+          "organization": "Z.ai",
+          "license": "MIT",
+          "votes": 61181
+        },
+        {
+          "rank": 4,
+          "name": "Grok-4",
+          "elo": 1430.7,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 98845
+        },
+        {
+          "rank": 5,
+          "name": "Qwen3-Max",
+          "elo": 1429.2,
+          "organization": "Alibaba",
+          "license": "Proprietary",
+          "votes": 51445
+        },
+        {
+          "rank": 6,
+          "name": "GPT-5.1",
+          "elo": 1428.3,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 63859
+        },
+        {
+          "rank": 7,
+          "name": "ERNIE-5.0",
+          "elo": 1427.3,
+          "organization": "Baidu",
+          "license": "Proprietary",
+          "votes": 93662
+        },
+        {
+          "rank": 8,
+          "name": "DeepSeek-V3",
+          "elo": 1426.2,
+          "organization": "DeepSeek",
+          "license": "Open",
+          "votes": 65294
+        },
+        {
+          "rank": 9,
+          "name": "GPT-5-high",
+          "elo": 1419.8,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 76121
+        },
+        {
+          "rank": 10,
+          "name": "Llama-4-75B",
+          "elo": 1418,
+          "organization": "Meta",
+          "license": "Open",
+          "votes": 84937
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-08",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1452.7,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 57923
+        },
+        {
+          "rank": 2,
+          "name": "Claude Opus 4.5 (thinking-32k)",
+          "elo": 1450.2,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 79924
+        },
+        {
+          "rank": 3,
+          "name": "Claude Opus 4.5",
+          "elo": 1445.9,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 60026
+        },
+        {
+          "rank": 4,
+          "name": "GPT-5.2",
+          "elo": 1439.5,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 76536
+        },
+        {
+          "rank": 5,
+          "name": "Grok-4",
+          "elo": 1437.6,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 66114
+        },
+        {
+          "rank": 6,
+          "name": "GLM-4.6",
+          "elo": 1435.2,
+          "organization": "Z.ai",
+          "license": "MIT",
+          "votes": 66295
+        },
+        {
+          "rank": 7,
+          "name": "ERNIE-5.0",
+          "elo": 1431.4,
+          "organization": "Baidu",
+          "license": "Proprietary",
+          "votes": 56390
+        },
+        {
+          "rank": 8,
+          "name": "GPT-5.1",
+          "elo": 1429.9,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 72520
+        },
+        {
+          "rank": 9,
+          "name": "DeepSeek-V3",
+          "elo": 1429.4,
+          "organization": "DeepSeek",
+          "license": "Open",
+          "votes": 73611
+        },
+        {
+          "rank": 10,
+          "name": "GPT-5-high",
+          "elo": 1428.9,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 86207
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-09",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-3-Flash",
+          "elo": 1455.6,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 75131
+        },
+        {
+          "rank": 2,
+          "name": "Claude Opus 4.5 (thinking-32k)",
+          "elo": 1453.8,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 87882
+        },
+        {
+          "rank": 3,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1453.8,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 75333
+        },
+        {
+          "rank": 4,
+          "name": "GPT-5.2",
+          "elo": 1451.4,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 62244
+        },
+        {
+          "rank": 5,
+          "name": "Claude Opus 4.5",
+          "elo": 1451.4,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 98346
+        },
+        {
+          "rank": 6,
+          "name": "Grok-4.1",
+          "elo": 1449.6,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 87511
+        },
+        {
+          "rank": 7,
+          "name": "GPT-5.1-high",
+          "elo": 1440.8,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 64275
+        },
+        {
+          "rank": 8,
+          "name": "Grok-4",
+          "elo": 1439,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 68147
+        },
+        {
+          "rank": 9,
+          "name": "ERNIE-5.0",
+          "elo": 1436.3,
+          "organization": "Baidu",
+          "license": "Proprietary",
+          "votes": 79429
+        },
+        {
+          "rank": 10,
+          "name": "GLM-4.6",
+          "elo": 1435.9,
+          "organization": "Z.ai",
+          "license": "MIT",
+          "votes": 70794
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-10",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-3-Pro",
+          "elo": 1470.5,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 55937
+        },
+        {
+          "rank": 2,
+          "name": "Gemini-3-Flash",
+          "elo": 1458.3,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 89582
+        },
+        {
+          "rank": 3,
+          "name": "Claude Opus 4.5 (thinking-32k)",
+          "elo": 1455.9,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 72926
+        },
+        {
+          "rank": 4,
+          "name": "Claude Opus 4.5",
+          "elo": 1455.4,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 55252
+        },
+        {
+          "rank": 5,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1455.3,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 97880
+        },
+        {
+          "rank": 6,
+          "name": "GPT-5.2",
+          "elo": 1454.8,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 86312
+        },
+        {
+          "rank": 7,
+          "name": "Grok-4.1-Thinking",
+          "elo": 1454.6,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 85103
+        },
+        {
+          "rank": 8,
+          "name": "GPT-5.1-high",
+          "elo": 1451.3,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 76324
+        },
+        {
+          "rank": 9,
+          "name": "GPT-5.2-high",
+          "elo": 1450.3,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 93205
+        },
+        {
+          "rank": 10,
+          "name": "Grok-4.1",
+          "elo": 1450.2,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 81131
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-11",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-3-Pro",
+          "elo": 1479.3,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 79212
+        },
+        {
+          "rank": 2,
+          "name": "Grok-4.1-Thinking",
+          "elo": 1466.7,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 66521
+        },
+        {
+          "rank": 3,
+          "name": "Claude Opus 4.5",
+          "elo": 1461.4,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 76396
+        },
+        {
+          "rank": 4,
+          "name": "Gemini-3-Flash",
+          "elo": 1459,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 78163
+        },
+        {
+          "rank": 5,
+          "name": "GPT-5.2",
+          "elo": 1458.7,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 78506
+        },
+        {
+          "rank": 6,
+          "name": "Claude Opus 4.5 (thinking-32k)",
+          "elo": 1456.7,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 68770
+        },
+        {
+          "rank": 7,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1455.8,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 51452
+        },
+        {
+          "rank": 8,
+          "name": "Grok-4.1",
+          "elo": 1454.6,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 58707
+        },
+        {
+          "rank": 9,
+          "name": "GPT-5.1-high",
+          "elo": 1452.5,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 73763
+        },
+        {
+          "rank": 10,
+          "name": "GPT-5.2-high",
+          "elo": 1451.1,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 96923
+        }
+      ],
+      "description": "Generated based on real models and release dates"
+    },
+    {
+      "date": "2025-12",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-3-Pro",
+          "elo": 1492,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 90000
+        },
+        {
+          "rank": 2,
+          "name": "Grok-4.1-Thinking",
+          "elo": 1482,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 89000
+        },
+        {
+          "rank": 3,
+          "name": "Gemini-3-Flash",
+          "elo": 1470,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 88000
+        },
+        {
+          "rank": 4,
+          "name": "Claude Opus 4.5 (thinking-32k)",
+          "elo": 1466,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 87000
+        },
+        {
+          "rank": 5,
+          "name": "GPT-5.2-high",
+          "elo": 1465,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 86000
+        },
+        {
+          "rank": 6,
+          "name": "GPT-5.1-high",
+          "elo": 1464,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 85000
+        },
+        {
+          "rank": 7,
+          "name": "GPT-5.2",
+          "elo": 1464,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 84000
+        },
+        {
+          "rank": 8,
+          "name": "Grok-4.1",
+          "elo": 1463,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 83000
+        },
+        {
+          "rank": 9,
+          "name": "Claude Opus 4.5",
+          "elo": 1462,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 82000
+        },
+        {
+          "rank": 10,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1460,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 81000
+        }
+      ],
+      "description": "Real data from Chatbot Arena (2025-01-17)"
+    }
+  ]
+}

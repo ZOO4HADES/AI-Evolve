@@ -1,0 +1,4 @@
+日期,数据源,模型数,Top3
+2025-03,20250301,10,chocolate (Early Grok-3) (1403), Gemini-2.0-Flash-Thinking-Exp-01-21 (1385), Gemini-2.0-Pro-Exp-02-05 (1380)
+2025-04,20250415,10,Gemini-2.5-Pro-Exp-03-25 (1437), ChatGPT-4o-latest (2025-03-26) (1406), Grok-3-Preview-02-24 (1402)
+2025-06,20250625,10,Gemini-2.5-Pro (1477), Gemini-2.5-Pro-Preview-05-06 (1446), ChatGPT-4o-latest (2025-03-26) (1428)

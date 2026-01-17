@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单宽度测试</title>
+    <style>
+        body {
+            padding: 20px;
+            background: #0a0e27;
+            color: #fff;
+        }
+        .test {
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+        }
+        .bar-container {
+            width: 100%;
+            height: 40px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00f0ff, #10b981);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-weight: bold;
+            color: #fff;
+            border-radius: 4px;
+            /* 重要：确保没有任何max-width */
+            max-width: none !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>简单宽度测试（无其他CSS干扰）</h1>
+
+    <div class="test">
+        <h3>ELO 1400</h3>
+        <div class="bar-container">
+            <div class="bar" style="width: 76.7%;">76.7%</div>
+        </div>
+    </div>
+
+    <div class="test">
+        <h3>ELO 1500</h3>
+        <div class="bar-container">
+            <div class="bar" style="width: 88.3%;">88.3%</div>
+        </div>
+    </div>
+
+    <div class="test">
+        <h3>ELO 1567</h3>
+        <div class="bar-container">
+            <div class="bar" style="width: 96.2%;">96.2%</div>
+        </div>
+    </div>
+
+    <div class="test">
+        <h3>ELO 1600 (最大)</h3>
+        <div class="bar-container">
+            <div class="bar" style="width: 100%;">100%</div>
+        </div>
+    </div>
+
+    <script>
+        console.log('========================================');
+        console.log('测试不同ELO的宽度');
+        console.log('========================================');
+
+        function calculateBarWidth(elo) {
+            const minElo = 1000;
+            const maxElo = 1600;
+            const minWidth = 30;
+            const maxWidth = 100;
+
+            const percentage = (elo - minElo) / (maxElo - minElo);
+            const width = minWidth + percentage * (maxWidth - minWidth);
+
+            console.log(`ELO ${elo}: percentage=${percentage.toFixed(3)}, width=${width.toFixed(1)}%`);
+            return width;
+        }
+
+        [1400, 1500, 1567, 1600].forEach(elo => calculateBarWidth(elo));
+    </script>
+</body>
+</html>

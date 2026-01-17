@@ -1,0 +1,80 @@
+/* CSS Variables - Cyberpunk Theme */
+:root {
+    /* Background Colors */
+    --bg-dark: #0a0e27;
+    --bg-card: #1a1f3a;
+    --bg-lighter: #252b4a;
+
+    /* Text Colors */
+    --text-primary: #e0e6ed;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Accent Colors (Cyberpunk Neon) */
+    --accent-cyan: #00f0ff;
+    --accent-pink: #ff00ff;
+    --accent-purple: #8b5cf6;
+    --accent-green: #10b981;
+
+    /* Glow Effects */
+    --glow-cyan: rgba(0, 240, 255, 0.3);
+    --glow-pink: rgba(255, 0, 255, 0.3);
+    --glow-purple: rgba(139, 92, 246, 0.3);
+
+    /* Company Colors */
+    --color-openai: #10a37f;
+    --color-anthropic: #d97757;
+    --color-google: #4285f4;
+    --color-xai: #1a1a2e;
+    --color-alibaba: #ff6a00;
+    --color-zai: #8b5cf6;
+    --color-baidu: #2932e1;
+    --color-moonshot: #1a1a2e;
+    --color-meta: #1877f2;
+    --color-mistral: #ff6b35;
+    --color-lmsys: #6366f1;
+
+    /* Typography */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 2rem;      /* 32px */
+    --font-size-4xl: 2.5rem;    /* 40px */
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-slower: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+    --shadow-glow-cyan: 0 0 20px var(--glow-cyan);
+    --shadow-glow-pink: 0 0 20px var(--glow-pink);
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Already dark, no changes needed */
+    }
+}
