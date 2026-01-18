@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI模型竞技场演进史 V4 - 改进动画版本</title>
+    <!-- 复用 V3 的 CSS -->
+    <link rel="stylesheet" href="css/reset.css?v=20">
+    <link rel="stylesheet" href="css/variables.css?v=20">
+    <link rel="stylesheet" href="css/layout.css?v=20">
+    <link rel="stylesheet" href="css/chart.css?v=20">
+    <link rel="stylesheet" href="css/animations.css?v=20">
+    <style>
+        /* V4 特有样式：改进的动画效果 */
+        .model-row {
+            transition: none; /* V4 使用 JS 动画，禁用 CSS transition */
+        }
+
+        .bar {
+            transition: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header-content">
+                <h1>AI模型竞技场演进史 <span style="color: var(--accent-cyan);">V4</span></h1>
+                <!-- 数据来源说明 -->
+                <div class="data-notice" style="
+                    background: rgba(0, 240, 255, 0.1);
+                    border-left: 3px solid var(--accent-cyan);
+                    padding: 8px 15px;
+                    margin-top: 10px;
+                    font-size: 12px;
+                    border-radius: 4px;
+                ">
+                    <strong>📊 数据来源</strong>：
+                    <span style="color: #10b981;">✅</span> 2025年1月、2月、12月 & 2026年1月真实榜单 |
+                    <span style="color: #f59e0b;">📈</span> 其他月份基于真实模型生成 |
+                    时间跨度: 2025.01 - 2026.01 (13个月)
+                </div>
+                <div style="
+                    background: rgba(168, 85, 247, 0.1);
+                    border-left: 3px solid #a855f7;
+                    padding: 8px 15px;
+                    margin-top: 8px;
+                    font-size: 12px;
+                    border-radius: 4px;
+                ">
+                    <strong>🚀 V4 改进</strong>：
+                    标准化模型名称匹配 • 精确位置捕获 • 改进动画逻辑
+                </div>
+            </div>
+            <div class="controls">
+                <button id="playPause" class="btn btn-primary">
+                    <i class="icon-play"></i> 播放
+                </button>
+                <div class="speed-control">
+                    <label for="speed">速度:</label>
+                    <input type="range" id="speed" min="0.5" max="3" step="0.5" value="1">
+                    <span id="speedDisplay">1x</span>
+                </div>
+                <div class="month-display">
+                    <span id="currentMonth">2025年1月</span>
+                </div>
+            </div>
+        </header>
+
+        <main id="chart">
+            <div class="loading">加载数据中...</div>
+        </main>
+
+        <footer>
+            <div class="timeline">
+                <div class="timeline-track">
+                    <!-- 时间轴标记将通过 JavaScript 动态生成 -->
+                </div>
+            </div>
+
+            <div class="legend">
+                <h3>公司图例</h3>
+                <div class="legend-items">
+                    <!-- 图例将通过 JavaScript 动态生成 -->
+                </div>
+            </div>
+        </footer>
+    </div>
+
+<!-- 使用 2025-2026 年数据（13个月） -->
+    <script src="js/data-bundle-mixed-v2.js?v=20"></script>
+    <script src="js/state-v4.js?v=20"></script>
+    <script src="js/core-v4.js?v=20"></script>
+    <script src="js/chart-v4.js?v=20"></script>
+    <script src="js/animator-v4.js?v=20"></script>
+    <script src="js/main-v4.js?v=20"></script>
+</body>
+</html>
