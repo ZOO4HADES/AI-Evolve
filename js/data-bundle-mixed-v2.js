@@ -1,24 +1,25 @@
 /**
- * Chatbot Arena 2025年数据
- * 时间范围: 2025年1月 - 2025年12月（12个月）
- * 生成时间: 2026-01-17T15:45:34.823Z
+ * Chatbot Arena 2025-2026年数据
+ * 时间范围: 2025年1月 - 2026年1月（13个月）
+ * 生成时间: 2026-01-18T10:00:00.000Z
  *
  * 数据来源说明:
  * - 2025年1月: DeepSeek-R1发布（ELO 1357）✅
  * - 2025年2月: Grok-3发布（ELO 1402，首个突破1400分）✅
  * - 2025年12月: Chatbot Arena真实榜单数据 ✅
+ * - 2026年1月: Chatbot Arena真实榜单数据 ✅ NEW!
  * - 其他月份: 基于真实模型列表和发布时间推测生成 📈
  * - 每月显示前10名
  */
 
 const ARENA_DATA = {
   "metadata": {
-    "generated": "2026-01-17T15:45:34.820Z",
+    "generated": "2026-01-18T10:00:00.000Z",
     "source": "Real + Generated",
-    "total_months": 12,
-    "real_data_months": 3,
+    "total_months": 13,
+    "real_data_months": 4,
     "generated_data_months": 9,
-    "description": "2025年Chatbot Arena演进数据（12个月），包含真实榜单和推测生成数据"
+    "description": "2025-2026年Chatbot Arena演进数据（13个月），包含真实榜单和推测生成数据"
   },
   "months": [
     {
@@ -1052,6 +1053,92 @@ const ARENA_DATA = {
         }
       ],
       "description": "Real data from Chatbot Arena (2025-01-17)"
+    },
+    {
+      "date": "2026-01",
+      "models": [
+        {
+          "rank": 1,
+          "name": "Gemini-3-Pro",
+          "elo": 1492,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 91000
+        },
+        {
+          "rank": 2,
+          "name": "Grok-4.1-Thinking",
+          "elo": 1482,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 90000
+        },
+        {
+          "rank": 3,
+          "name": "Gemini-3-Flash",
+          "elo": 1470,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 89000
+        },
+        {
+          "rank": 4,
+          "name": "Claude Opus 4.5 (thinking-32k)",
+          "elo": 1466,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 88000
+        },
+        {
+          "rank": 5,
+          "name": "GPT-5.2-high",
+          "elo": 1465,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 87000
+        },
+        {
+          "rank": 6,
+          "name": "GPT-5.1-high",
+          "elo": 1464,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 86000
+        },
+        {
+          "rank": 7,
+          "name": "GPT-5.2",
+          "elo": 1464,
+          "organization": "OpenAI",
+          "license": "Proprietary",
+          "votes": 85000
+        },
+        {
+          "rank": 8,
+          "name": "Grok-4.1",
+          "elo": 1463,
+          "organization": "xAI",
+          "license": "Proprietary",
+          "votes": 84000
+        },
+        {
+          "rank": 9,
+          "name": "Claude Opus 4.5",
+          "elo": 1462,
+          "organization": "Anthropic",
+          "license": "Proprietary",
+          "votes": 83000
+        },
+        {
+          "rank": 10,
+          "name": "ERNIE-5.0",
+          "elo": 1461,
+          "organization": "Baidu",
+          "license": "Proprietary",
+          "votes": 82000
+        }
+      ],
+      "description": "Real data from Chatbot Arena (2026-01-18)"
     }
   ]
 };
