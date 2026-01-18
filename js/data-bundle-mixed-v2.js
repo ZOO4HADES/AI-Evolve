@@ -651,12 +651,20 @@ const ARENA_DATA = {
           "rank": 3
         },
         {
+          "name": "GLM-4.7",
+          "elo": 1442,
+          "organization": "Z.ai",
+          "license": "MIT",
+          "votes": 88181,
+          "rank": 4
+        },
+        {
           "name": "Grok-4",
           "elo": 1436.2,
           "organization": "xAI",
           "license": "Proprietary",
           "votes": 96995,
-          "rank": 4
+          "rank": 5
         },
         {
           "name": "GLM-4.6",
@@ -664,7 +672,7 @@ const ARENA_DATA = {
           "organization": "Z.ai",
           "license": "MIT",
           "votes": 61282,
-          "rank": 5
+          "rank": 6
         },
         {
           "name": "ERNIE-5.0",
@@ -672,14 +680,6 @@ const ARENA_DATA = {
           "organization": "Baidu",
           "license": "Proprietary",
           "votes": 85707,
-          "rank": 6
-        },
-        {
-          "name": "GLM-4.7",
-          "elo": 1432.8,
-          "organization": "Z.ai",
-          "license": "MIT",
-          "votes": 88181,
           "rank": 7
         },
         {
@@ -745,12 +745,20 @@ const ARENA_DATA = {
           "rank": 4
         },
         {
+          "name": "GLM-4.7",
+          "elo": 1444,
+          "organization": "Z.ai",
+          "license": "MIT",
+          "votes": 72000,
+          "rank": 5
+        },
+        {
           "name": "Gemini-3-Flash",
           "elo": 1440.7,
           "organization": "Google",
           "license": "Proprietary",
           "votes": 50584,
-          "rank": 5
+          "rank": 6
         },
         {
           "name": "Grok-4.1",
@@ -758,7 +766,7 @@ const ARENA_DATA = {
           "organization": "xAI",
           "license": "Proprietary",
           "votes": 76333,
-          "rank": 6
+          "rank": 7
         },
         {
           "name": "Grok-4",
@@ -766,7 +774,7 @@ const ARENA_DATA = {
           "organization": "xAI",
           "license": "Proprietary",
           "votes": 70915,
-          "rank": 7
+          "rank": 8
         },
         {
           "name": "GLM-4.6",
@@ -774,7 +782,7 @@ const ARENA_DATA = {
           "organization": "Z.ai",
           "license": "MIT",
           "votes": 66219,
-          "rank": 8
+          "rank": 9
         },
         {
           "name": "GPT-5.1",
@@ -782,14 +790,6 @@ const ARENA_DATA = {
           "organization": "OpenAI",
           "license": "Proprietary",
           "votes": 86457,
-          "rank": 9
-        },
-        {
-          "name": "ERNIE-5.0",
-          "elo": 1433.9,
-          "organization": "Baidu",
-          "license": "Proprietary",
-          "votes": 77892,
           "rank": 10
         }
       ],

@@ -148,7 +148,8 @@ class ChartV3 {
                 oldPositions.set(modelName, {
                     top: rect.top,
                     left: rect.left,
-                    element: element
+                    element: element,
+                    rank: parseInt(element.dataset.rank)  // ⚠️ 存储旧排名
                 });
             }
         });
@@ -405,7 +406,7 @@ class ChartV3 {
                 const deltaY = oldPos.top - newPos.top;
                 const deltaX = oldPos.left - newPos.left;
 
-// ⚠️ 记录柱状图宽度变化（从旧元素的bar获取）
+                // ⚠️ 记录柱状图宽度变化（从旧元素的bar获取）
                 const oldBar = oldPos.element.querySelector('.bar');
                 const newBar = newPos.element.querySelector('.bar');
 
@@ -416,18 +417,23 @@ class ChartV3 {
                     newBarWidth = parseFloat(newBar.style.width);
                 }
 
+                // ⚠️ 关键修复：检查排名是否变化，而不是仅依赖位置差值
+                const rankChanged = oldPos.rank !== newPos.rank;
+                const positionChanged = Math.abs(deltaY) > 0.5 || Math.abs(deltaX) > 0.5;
+
                 console.log(`[ChartV3] ${modelName}:`);
+                console.log(`  旧排名: ${oldPos.rank}, 新排名: ${newPos.rank}, 排名变化: ${rankChanged ? '是' : '否'}`);
                 console.log(`  旧top: ${oldPos.top.toFixed(1)}px, 新top: ${newPos.top.toFixed(1)}px`);
                 console.log(`  deltaY: ${deltaY.toFixed(1)}px (${deltaY > 0 ? '向下' : deltaY < 0 ? '向上' : '无'}移动)`);
                 console.log(`  deltaX: ${deltaX.toFixed(1)}px`);
                 console.log(`  柱状图: ${oldBarWidth}% → ${newBarWidth}% (变化${Math.abs(newBarWidth - oldBarWidth).toFixed(1)}%)`);
 
-if (Math.abs(deltaY) > 0.5 || Math.abs(deltaX) > 0.5) {
-                    // 位置有变化，需要移动动画
+                if (rankChanged && positionChanged) {
+                    // ⚠️ 排名变化且有位置变化：需要移动动画
                     // deltaX/Y 是从旧位置到新位置的偏移量
                     // 动画会从 translate(deltaX, deltaY) 平滑移动到 translate(0, 0)
 
-                    // ⚠️ 立即将新元素的bar重置为旧宽度
+                    // 立即将新元素的bar重置为旧宽度
                     // 这样动画会从旧宽度平滑增长到新宽度
                     if (newBar) {
                         newBar.style.width = `${oldBarWidth}%`;
@@ -441,10 +447,10 @@ if (Math.abs(deltaY) > 0.5 || Math.abs(deltaX) > 0.5) {
                         oldBarWidth: oldBarWidth,
                         newBarWidth: newBarWidth
                     });
-                    console.log(`  ✅ 需要移动+宽度动画`);
+                    console.log(`  ✅ 排名变化+位置变化，需要移动+宽度动画`);
                 } else if (Math.abs(newBarWidth - oldBarWidth) > 0.1) {
-                    // ⚠️ V3关键改进：位置不变但宽度有变化时，也要创建宽度动画
-                    // 这样可以避免"跳动"感
+                    // ⚠️ 排名不变或位置未变，但宽度有变化：只创建宽度动画
+                    // 这样可以避免排名不变时的不必要移动
 
                     // 立即将新元素的bar重置为旧宽度
                     if (newBar) {
@@ -452,14 +458,14 @@ if (Math.abs(deltaY) > 0.5 || Math.abs(deltaX) > 0.5) {
                     }
 
                     animations.push({
-                        type: 'width-change', // 新的动画类型：只有宽度变化
+                        type: 'width-change', // 动画类型：只有宽度变化
                         element: element,
                         oldBarWidth: oldBarWidth,
                         newBarWidth: newBarWidth
                     });
-                    console.log(`  ✅ 位置不变，但需要宽度动画`);
+                    console.log(`  ✅ 排名不变，但需要宽度动画`);
                 } else {
-                    console.log(`  ⏭️  位置和宽度都未变，跳过`);
+                    console.log(`  ⏭️ 排名、位置和宽度都未变，跳过`);
                 }
             } else {
                 // 新元素
