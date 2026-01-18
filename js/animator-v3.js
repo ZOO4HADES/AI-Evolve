@@ -33,17 +33,18 @@ class ChartAnimatorV3 {
 
     /**
      * 下一月（使用像素级动画）
-     * ✅ 修复：到达最后一个月时停止循环
+     * ✅ 修复：先更新索引，再检查是否到达最后一个月
      */
     async nextMonthWithPixelAnimation() {
-        // 如果已经是最后一个月，停止播放
+        // 先更新索引
+        this.currentIndex = (this.currentIndex + 1) % this.data.months.length;
+
+        // 如果更新后是最后一个月，停止播放
         if (this.currentIndex >= this.data.months.length - 1) {
-            console.log('已到达最后一个月，停止播放');
-            this.pause();
-            return;
+            console.log('已到达最后一个月，播放完当前月后停止');
+            // 先渲染当前月，然后在 play() 循环中停止
         }
 
-        this.currentIndex = (this.currentIndex + 1) % this.data.months.length;
         await this.renderCurrentMonthWithPixelAnimation();
     }
 

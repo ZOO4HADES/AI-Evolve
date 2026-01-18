@@ -64,11 +64,11 @@ class ChartV3 {
 
     /**
      * 计算柱状图宽度（基于Elo评分）
-     * 更新ELO范围以适应新数据（最高1567）
+     * 更新ELO范围以适应2025年数据（最高1492）
      */
     calculateBarWidth(elo) {
         const minElo = 1000;
-        const maxElo = 1600;
+        const maxElo = 1500;  // ✅ 更新为1500，确保2025-12的最高分1492有足够显示空间
         const minWidth = 30;  // ✅ 降低最小宽度，增大动态范围
         const maxWidth = 100; // ✅ 从95提升到100，充分利用空间
 
@@ -76,7 +76,7 @@ class ChartV3 {
         const width = minWidth + percentage * (maxWidth - minWidth);
 
         // 调试输出（方便排查问题）
-        if (elo >= 1400) {
+        if (elo >= 1450) {
             console.log(`[宽度计算] ELO: ${elo}, 百分比: ${(percentage * 100).toFixed(1)}%, 宽度: ${width.toFixed(1)}%`);
         }
 
@@ -156,6 +156,25 @@ class ChartV3 {
         // 更新模型追踪器
         const changes = this.modelTracker.update(monthData);
 
+        // ⚠️ 保存离开的模型列表，用于动画完成后删除
+        const leavingModels = [...changes.leaving];
+
+        // ⚠️ 关键修复：在DOM更新前捕获离开元素的原始位置
+        const leavingElementsOriginalPos = new Map();
+        leavingModels.forEach(modelName => {
+            const element = this.currentElements.get(modelName);
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                const containerRect = this.container.getBoundingClientRect();
+                leavingElementsOriginalPos.set(modelName, {
+                    top: rect.top - containerRect.top,
+                    left: rect.left - containerRect.left,
+                    width: rect.width
+                });
+                console.log(`[ChartV3] 捕获离开元素原始位置: ${modelName}, top=${(rect.top - containerRect.top).toFixed(1)}px`);
+            }
+        });
+
         // 更新DOM
         this.updateDOM(monthData, changes);
 
@@ -196,26 +215,13 @@ class ChartV3 {
             this._pendingElements.clear();
         }
 
-        // ⚠️ 优化方法：重新排序DOM获取准确位置，但立即应用transform避免可见的跳动
-        // 先重新排序DOM
-        if (this._pendingReorder) {
-            let referenceNode = this.container.firstChild;
-            this._pendingReorder.forEach(modelName => {
-                const row = this.currentElements.get(modelName);
-                if (row && row.parentNode === this.container) {
-                    this.container.insertBefore(row, referenceNode);
-                    referenceNode = row.nextSibling;
-                }
-            });
-            console.log('[ChartV3] 重新排序DOM以获取准确位置');
-        }
-
-        // 强制回流
-        void this.container.offsetHeight;
-
-        // 获取准确的新位置（基于重新排序后的DOM）
+// ⚠️ 关键修复：先获取新位置（基于当前DOM顺序），然后再重新排序DOM
+        // 这样可以计算出正确的移动距离
         const sortedModels = [...monthData.models].sort((a, b) => a.rank - b.rank);
         const newPositions = new Map();
+
+        // 强制回流，确保DOM更新完成
+        void this.container.offsetHeight;
 
         sortedModels.forEach((model, index) => {
             const element = this.currentElements.get(model.name);
@@ -229,8 +235,22 @@ class ChartV3 {
                 rank: model.rank
             });
 
-            console.log(`[ChartV3] ${model.name} (排名${model.rank}) 实际位置: top=${rect.top.toFixed(1)}`);
+            console.log(`[ChartV3] ${model.name} (排名${model.rank}) 当前DOM位置: top=${rect.top.toFixed(1)}`);
         });
+
+        // ⚠️ 关键修复：现在重新排序DOM到正确的位置
+        // 元素会从刚才计算的位置移动到新位置
+        if (this._pendingReorder) {
+            let referenceNode = this.container.firstChild;
+            this._pendingReorder.forEach(modelName => {
+                const row = this.currentElements.get(modelName);
+                if (row && row.parentNode === this.container) {
+                    this.container.insertBefore(row, referenceNode);
+                    referenceNode = row.nextSibling;
+                }
+            });
+            console.log('[ChartV3] 重新排序DOM到正确位置');
+        }
 
         // 计算动画指令
         const animations = this.calculateAnimations(oldPositions, newPositions);
@@ -265,8 +285,38 @@ class ChartV3 {
 
                 console.log(`[ChartV3] 进入动画初始状态: ${element.dataset.modelName}`);
             } else if (anim.type === 'leave') {
-                // 离开动画：保持可见
-                anim.element.style.opacity = '1';
+                // ⚠️ 离开动画：确保元素可见，准备播放向下移动消失的动画
+                const element = anim.element;
+                const modelName = element.dataset.modelName;
+
+                element.style.visibility = 'visible';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+                element.style.transition = 'none';
+
+                // ⚠️ 关键修复：使用DOM更新前捕获的原始位置
+                const originalPos = leavingElementsOriginalPos.get(modelName);
+                if (originalPos) {
+                    // 设置为 absolute，保持在原始位置的视觉效果
+                    element.style.position = 'absolute';
+                    element.style.top = `${originalPos.top}px`;
+                    element.style.left = `${originalPos.left}px`;
+                    element.style.width = `${originalPos.width}px`;
+                    element.style.zIndex = '100'; // 确保在上层显示
+
+                    console.log(`[ChartV3] 离开动画初始状态: ${modelName}, 原始top=${originalPos.top.toFixed(1)}px`);
+                } else {
+                    // 降级方案：如果没有记录原始位置，使用当前位置
+                    const rect = element.getBoundingClientRect();
+                    const containerRect = this.container.getBoundingClientRect();
+                    element.style.position = 'absolute';
+                    element.style.top = `${rect.top - containerRect.top}px`;
+                    element.style.left = '0';
+                    element.style.right = '0';
+                    element.style.width = '100%';
+
+                    console.log(`[ChartV3] 离开动画初始状态（降级）: ${modelName}`);
+                }
             }
         });
 
@@ -305,6 +355,16 @@ class ChartV3 {
 
         // 执行像素级动画
         await this.pixelAnimator.executePixelAnimations(animations);
+
+        // ⚠️ 动画完成后，删除离开的元素（离开动画已完成）
+        leavingModels.forEach(modelName => {
+            const row = this.currentElements.get(modelName);
+            if (row && row.parentNode === this.container) {
+                this.container.removeChild(row);
+                console.log(`[ChartV3] 删除离开元素: ${modelName}`);
+            }
+            this.currentElements.delete(modelName);
+        });
 
         // ⚠️ 清理待排序信息（已经在动画开始前应用了排序）
         this._pendingReorder = null;
@@ -345,7 +405,7 @@ class ChartV3 {
                 const deltaY = oldPos.top - newPos.top;
                 const deltaX = oldPos.left - newPos.left;
 
-                // ⚠️ 记录柱状图宽度变化（从旧元素的bar获取）
+// ⚠️ 记录柱状图宽度变化（从旧元素的bar获取）
                 const oldBar = oldPos.element.querySelector('.bar');
                 const newBar = newPos.element.querySelector('.bar');
 
@@ -362,7 +422,7 @@ class ChartV3 {
                 console.log(`  deltaX: ${deltaX.toFixed(1)}px`);
                 console.log(`  柱状图: ${oldBarWidth}% → ${newBarWidth}% (变化${Math.abs(newBarWidth - oldBarWidth).toFixed(1)}%)`);
 
-                if (Math.abs(deltaY) > 0.5 || Math.abs(deltaX) > 0.5) {
+if (Math.abs(deltaY) > 0.5 || Math.abs(deltaX) > 0.5) {
                     // 位置有变化，需要移动动画
                     // deltaX/Y 是从旧位置到新位置的偏移量
                     // 动画会从 translate(deltaX, deltaY) 平滑移动到 translate(0, 0)
@@ -458,13 +518,18 @@ class ChartV3 {
             }
         });
 
-        // 1. 删除离开的元素
+        // 1. ⚠️ 关键修复：不立即删除离开的元素，让它们先播放离开动画
+        // 离开动画会在动画完成后从 DOM 中移除这些元素
         leaving.forEach(modelName => {
             const row = this.currentElements.get(modelName);
-            if (row && row.parentNode === this.container) {
-                this.container.removeChild(row);
+            if (row) {
+                // 记录当前柱状图宽度，用于离开动画
+                const bar = row.querySelector('.bar');
+                if (bar) {
+                    row._currentBarWidth = bar.style.width;
+                }
+                console.log(`[ChartV3] 标记离开元素: ${modelName}, 当前宽度: ${row._currentBarWidth}`);
             }
-            this.currentElements.delete(modelName);
         });
 
         // 2. 更新现有元素的内容

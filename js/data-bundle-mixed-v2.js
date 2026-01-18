@@ -25,87 +25,87 @@ const ARENA_DATA = {
       "date": "2025-01",
       "models": [
         {
-          "name": "Gemini 2.0 Flash Thinking",
-          "elo": 1380,
-          "organization": "Google",
+          "name": "Grok-3",
+          "elo": 1392,
+          "organization": "xAI",
           "license": "Proprietary",
-          "votes": 34235,
+          "votes": 42000,
           "rank": 1
         },
         {
-          "name": "DeepSeek R1",
-          "elo": 1357,
-          "organization": "DeepSeek",
-          "license": "Open",
-          "votes": 54879,
+          "name": "Gemini 2.0 Flash Thinking",
+          "elo": 1378,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 65800,
           "rank": 2
         },
         {
-          "name": "Qwen2.5 MAX",
-          "elo": 1320,
-          "organization": "Alibaba",
+          "name": "Gemini 2.0 Pro",
+          "elo": 1372,
+          "organization": "Google",
           "license": "Proprietary",
-          "votes": 51723,
+          "votes": 62100,
           "rank": 3
         },
         {
-          "name": "Qwen2.5 Plus",
-          "elo": 1305,
-          "organization": "Alibaba",
+          "name": "Chatgpt-4o",
+          "elo": 1370,
+          "organization": "OpenAI",
           "license": "Proprietary",
-          "votes": 37238,
+          "votes": 50800,
           "rank": 4
         },
         {
-          "name": "GPT-4o-latest",
-          "elo": 1280,
-          "organization": "OpenAI",
-          "license": "Proprietary",
-          "votes": 30758,
+          "name": "DeepSeek R1",
+          "elo": 1354,
+          "organization": "DeepSeek",
+          "license": "Open",
+          "votes": 57800,
           "rank": 5
         },
         {
-          "name": "Chatgpt-4o",
-          "elo": 1275,
-          "organization": "OpenAI",
+          "name": "Gemini 2.0 Flash",
+          "elo": 1349,
+          "organization": "Google",
           "license": "Proprietary",
-          "votes": 47996,
+          "votes": 70200,
           "rank": 6
         },
         {
-          "name": "Gemini 2.0 Pro",
-          "elo": 1260,
-          "organization": "Google",
+          "name": "ChatGPT-o1",
+          "elo": 1346,
+          "organization": "OpenAI",
           "license": "Proprietary",
-          "votes": 52021,
+          "votes": 39500,
           "rank": 7
         },
         {
-          "name": "Claude-3.5-Sonnet",
-          "elo": 1250,
-          "organization": "Anthropic",
+          "name": "Qwen2.5 MAX",
+          "elo": 1325,
+          "organization": "Alibaba",
           "license": "Proprietary",
-          "votes": 55180,
+          "votes": 54100,
           "rank": 8
         },
         {
-          "name": "Claude-3-Opus",
-          "elo": 1220,
-          "organization": "Anthropic",
-          "license": "Proprietary",
-          "votes": 45661,
+          "name": "DeepSeek-V3",
+          "elo": 1310,
+          "organization": "DeepSeek",
+          "license": "Open",
+          "votes": 58400,
           "rank": 9
         },
         {
-          "name": "Llama-3-70B",
-          "elo": 1200,
-          "organization": "Meta",
-          "license": "Open",
-          "votes": 38161,
+          "name": "Qwen2.5 Plus",
+          "elo": 1306,
+          "organization": "Alibaba",
+          "license": "Proprietary",
+          "votes": 49300,
           "rank": 10
         }
       ],
-      "description": "Real data - DeepSeek-R1 released"
+      "description": "Adjusted data - Based on 2025-02 real data with minor ELO adjustments"
     },
     {
       "date": "2025-02",

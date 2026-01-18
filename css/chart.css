@@ -3,6 +3,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    position: relative;
+    /* 确保动画元素不会超出header边界 */
+    transform-style: preserve-3d;
+    /* 限制动画区域在容器内 */
+    clip-path: inset(0 0 0 0);
 }
 
 /* Model Row */
@@ -15,6 +20,13 @@
     border-radius: var(--radius-md);
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition-base);
+    position: relative;
+    z-index: 1; /* 基础层级 */
+}
+
+/* 动画期间提升层级 */
+.model-row.pixel-moving {
+    z-index: 10; /* 移动动画时提升层级 */
 }
 
 .model-row:hover {

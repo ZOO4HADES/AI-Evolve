@@ -42,6 +42,7 @@ class PixelAnimator {
             // ⚠️ 计算最优动画时长：根据变化幅度动态调整
             // 变化幅度小 → 更慢的动画，确保过渡可见
             // 变化幅度大 → 正常速度，避免拖沓
+            // ✅ V3.1更新：加快正常名次变化动画（原时长的50%）
             let maxDuration = this.animationDuration;
 
             moveAnimations.forEach(anim => {
@@ -57,36 +58,35 @@ class PixelAnimator {
                     widthChange = Math.abs(anim.newBarWidth - anim.oldBarWidth);
                 }
 
-                // 根据变化幅度计算动画时长
-                // ⚠️ 关键策略：变化越小，动画越慢，确保平滑过渡可见
-                // 极小变化 → 超超慢动画（3500ms）
-                // 小变化 → 超慢动画（2500ms）
-                // 大变化 → 正常速度（1000ms）
+                // ⚠️ 根据变化幅度计算动画时长（加快版，原时长的约50%）
+                // 极小变化 → 中速动画（1800ms）
+                // 小变化 → 快速动画（1200ms）
+                // 大变化 → 超快动画（600ms）
 
                 let duration;
 
                 if (widthChange < 2 && widthChange > 0) {
-                    // 极小变化（<2%）：超超慢动画，确保可见
-                    duration = 3500;
-                } else if (widthChange < 5) {
-                    // 小变化（2-5%）：超慢动画
-                    duration = 2500;
-                } else if (widthChange < 10) {
-                    // 中小变化（5-10%）：慢速动画
+                    // 极小变化（<2%）：中速动画
                     duration = 1800;
-                } else {
-                    // 大变化（≥10%）：正常速度
+                } else if (widthChange < 5) {
+                    // 小变化（2-5%）：快速动画
                     duration = 1200;
+                } else if (widthChange < 10) {
+                    // 中小变化（5-10%）：较快动画
+                    duration = 800;
+                } else {
+                    // 大变化（≥10%）：超快动画
+                    duration = 600;
                 }
 
                 // 考虑位置变化：如果有大幅移动，适当延长时长
                 if (positionChange > 200) {
-                    duration += 200;
-                } else if (positionChange > 100) {
                     duration += 100;
+                } else if (positionChange > 100) {
+                    duration += 50;
                 }
 
-                anim.duration = Math.min(Math.max(duration, 1000), 4000); // 限制在1000-4000ms
+                anim.duration = Math.min(Math.max(duration, 500), 2500); // 限制在500-2500ms
 
                 maxDuration = Math.max(maxDuration, anim.duration);
 
@@ -96,7 +96,7 @@ class PixelAnimator {
                     `动画时长=${anim.duration}ms`);
             });
 
-            // ⚠️ V3新增：为width-change动画计算时长
+            // ⚠️ V3.1更新：为width-change动画计算时长（加快版，原时长的约50%）
             widthChangeAnimations.forEach(anim => {
                 const widthChange = Math.abs(anim.newBarWidth - anim.oldBarWidth);
 
@@ -104,16 +104,16 @@ class PixelAnimator {
                 let duration;
 
                 if (widthChange < 2 && widthChange > 0) {
-                    duration = 3500; // 极小变化
+                    duration = 1800; // 极小变化（原3500ms）
                 } else if (widthChange < 5) {
-                    duration = 2500; // 小变化
+                    duration = 1200; // 小变化（原2500ms）
                 } else if (widthChange < 10) {
-                    duration = 1800; // 中小变化
+                    duration = 800; // 中小变化（原1800ms）
                 } else {
-                    duration = 1200; // 大变化
+                    duration = 600; // 大变化（原1200ms）
                 }
 
-                anim.duration = Math.min(Math.max(duration, 1000), 4000);
+                anim.duration = Math.min(Math.max(duration, 500), 2500);
 
                 maxDuration = Math.max(maxDuration, anim.duration);
 
@@ -121,6 +121,16 @@ class PixelAnimator {
                     `宽度变化=${widthChange.toFixed(1)}%, ` +
                     `动画时长=${anim.duration}ms`);
             });
+
+            // ⚠️ V3.1新增：离开动画使用3倍慢速（4500ms）
+            if (leaveAnimations.length > 0) {
+                const leaveDuration = this.animationDuration * 3; // 1500ms * 3 = 4500ms
+                leaveAnimations.forEach(anim => {
+                    anim.duration = leaveDuration;
+                });
+                maxDuration = Math.max(maxDuration, leaveDuration);
+                console.log(`[PixelAnimator] 离开动画时长: ${leaveDuration}ms (3倍慢速)`);
+            }
 
             console.log(`[PixelAnimator] 实际动画时长: ${maxDuration}ms`);
 
