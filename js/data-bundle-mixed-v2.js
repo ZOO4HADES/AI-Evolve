@@ -1083,14 +1083,6 @@ const ARENA_DATA = {
         },
         {
           "rank": 4,
-          "name": "Claude Opus 4.5 (thinking-32k)",
-          "elo": 1466,
-          "organization": "Anthropic",
-          "license": "Proprietary",
-          "votes": 88000
-        },
-        {
-          "rank": 5,
           "name": "GPT-5.2-high",
           "elo": 1465,
           "organization": "OpenAI",
@@ -1098,7 +1090,7 @@ const ARENA_DATA = {
           "votes": 87000
         },
         {
-          "rank": 6,
+          "rank": 5,
           "name": "GPT-5.1-high",
           "elo": 1464,
           "organization": "OpenAI",
@@ -1106,7 +1098,7 @@ const ARENA_DATA = {
           "votes": 86000
         },
         {
-          "rank": 7,
+          "rank": 6,
           "name": "GPT-5.2",
           "elo": 1464,
           "organization": "OpenAI",
@@ -1114,7 +1106,7 @@ const ARENA_DATA = {
           "votes": 85000
         },
         {
-          "rank": 8,
+          "rank": 7,
           "name": "Grok-4.1",
           "elo": 1463,
           "organization": "xAI",
@@ -1122,7 +1114,7 @@ const ARENA_DATA = {
           "votes": 84000
         },
         {
-          "rank": 9,
+          "rank": 8,
           "name": "Claude Opus 4.5",
           "elo": 1462,
           "organization": "Anthropic",
@@ -1130,12 +1122,20 @@ const ARENA_DATA = {
           "votes": 83000
         },
         {
-          "rank": 10,
+          "rank": 9,
           "name": "ERNIE-5.0",
           "elo": 1461,
           "organization": "Baidu",
           "license": "Proprietary",
           "votes": 82000
+        },
+        {
+          "rank": 10,
+          "name": "Gemini-2.5-Pro",
+          "elo": 1460,
+          "organization": "Google",
+          "license": "Proprietary",
+          "votes": 81000
         }
       ],
       "description": "Real data from Chatbot Arena (2026-01-18)"

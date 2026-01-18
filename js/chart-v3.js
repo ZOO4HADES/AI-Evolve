@@ -241,16 +241,18 @@ class ChartV3 {
 
         // ⚠️ 关键修复：现在重新排序DOM到正确的位置
         // 元素会从刚才计算的位置移动到新位置
-        if (this._pendingReorder) {
-            let referenceNode = this.container.firstChild;
+        if (this._pendingReorder && this._pendingReorder.length > 0) {
+            // ⚠️ 改进：使用 appendChild，按排名顺序逐个移动到末尾
+            // 这样可以确保元素按正确顺序排列
             this._pendingReorder.forEach(modelName => {
                 const row = this.currentElements.get(modelName);
                 if (row && row.parentNode === this.container) {
-                    this.container.insertBefore(row, referenceNode);
-                    referenceNode = row.nextSibling;
+                    // appendChild 会移动已存在的元素，不会复制
+                    this.container.appendChild(row);
                 }
             });
-            console.log('[ChartV3] 重新排序DOM到正确位置');
+
+            console.log(`[ChartV3] 重新排序DOM到正确位置，共移动${this._pendingReorder.length}个元素`);
         }
 
         // 计算动画指令
@@ -417,7 +419,7 @@ class ChartV3 {
                     newBarWidth = parseFloat(newBar.style.width);
                 }
 
-                // ⚠️ 关键修复：检查排名是否变化，而不是仅依赖位置差值
+                // ⚠️ 关键修复：排名变化是主要判断标准，位置变化作为辅助验证
                 const rankChanged = oldPos.rank !== newPos.rank;
                 const positionChanged = Math.abs(deltaY) > 0.5 || Math.abs(deltaX) > 0.5;
 
@@ -428,8 +430,9 @@ class ChartV3 {
                 console.log(`  deltaX: ${deltaX.toFixed(1)}px`);
                 console.log(`  柱状图: ${oldBarWidth}% → ${newBarWidth}% (变化${Math.abs(newBarWidth - oldBarWidth).toFixed(1)}%)`);
 
-                if (rankChanged && positionChanged) {
-                    // ⚠️ 排名变化且有位置变化：需要移动动画
+                if (rankChanged) {
+                    // ⚠️ 排名变化：无论位置差值大小，都创建移动动画
+                    // 避免因 DOM 重排导致的位置计算误差
                     // deltaX/Y 是从旧位置到新位置的偏移量
                     // 动画会从 translate(deltaX, deltaY) 平滑移动到 translate(0, 0)
 
@@ -447,10 +450,10 @@ class ChartV3 {
                         oldBarWidth: oldBarWidth,
                         newBarWidth: newBarWidth
                     });
-                    console.log(`  ✅ 排名变化+位置变化，需要移动+宽度动画`);
+                    console.log(`  ✅ 排名变化，需要移动+宽度动画 (deltaY=${deltaY.toFixed(1)}px)`);
                 } else if (Math.abs(newBarWidth - oldBarWidth) > 0.1) {
-                    // ⚠️ 排名不变或位置未变，但宽度有变化：只创建宽度动画
-                    // 这样可以避免排名不变时的不必要移动
+                    // ⚠️ 排名不变，但宽度有变化：只创建宽度动画
+                    // 避免排名不变时的不必要移动
 
                     // 立即将新元素的bar重置为旧宽度
                     if (newBar) {
