@@ -216,6 +216,12 @@ class ChartV4 {
 
         console.log(`[ChartV4] 更新DOM - 进入: ${enteringOriginal.length}, 保留: ${stayingOriginal.length}, 离开: ${leavingOriginal.length}`);
 
+        // ⚠️ 首次渲染时清空容器
+        if (this.currentElements.size === 0) {
+            this.container.innerHTML = '';
+            console.log('[ChartV4] 首次渲染，清空容器');
+        }
+
         const sortedModels = [...monthData.models].sort((a, b) => a.rank - b.rank);
 
         // 创建新元素（但不插入）
