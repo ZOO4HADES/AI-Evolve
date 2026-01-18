@@ -1087,7 +1087,7 @@ const ARENA_DATA = {
           "elo": 1465,
           "organization": "OpenAI",
           "license": "Proprietary",
-          "votes": 87000
+          "votes": 88000
         },
         {
           "rank": 5,
@@ -1095,7 +1095,7 @@ const ARENA_DATA = {
           "elo": 1464,
           "organization": "OpenAI",
           "license": "Proprietary",
-          "votes": 86000
+          "votes": 87000
         },
         {
           "rank": 6,
@@ -1103,7 +1103,7 @@ const ARENA_DATA = {
           "elo": 1464,
           "organization": "OpenAI",
           "license": "Proprietary",
-          "votes": 85000
+          "votes": 86000
         },
         {
           "rank": 7,
@@ -1111,7 +1111,7 @@ const ARENA_DATA = {
           "elo": 1463,
           "organization": "xAI",
           "license": "Proprietary",
-          "votes": 84000
+          "votes": 85000
         },
         {
           "rank": 8,
@@ -1119,7 +1119,7 @@ const ARENA_DATA = {
           "elo": 1462,
           "organization": "Anthropic",
           "license": "Proprietary",
-          "votes": 83000
+          "votes": 84000
         },
         {
           "rank": 9,
@@ -1127,7 +1127,7 @@ const ARENA_DATA = {
           "elo": 1461,
           "organization": "Baidu",
           "license": "Proprietary",
-          "votes": 82000
+          "votes": 83000
         },
         {
           "rank": 10,
@@ -1135,7 +1135,7 @@ const ARENA_DATA = {
           "elo": 1460,
           "organization": "Google",
           "license": "Proprietary",
-          "votes": 81000
+          "votes": 82000
         }
       ],
       "description": "Real data from Chatbot Arena (2026-01-18)"
